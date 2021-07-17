@@ -5,10 +5,7 @@ class CreateSpendingsController {
   async handle(request: Request, response: Response) {
     const createSpendingServices = new CreateSpendinsServices()
 
-    const {id} = request.params
-    const {name} = request.body
-
-    const user_reference = Number(id)
+    const {name, user_reference} = request.body
 
     const spending = await createSpendingServices.execute({name, user_reference})
 

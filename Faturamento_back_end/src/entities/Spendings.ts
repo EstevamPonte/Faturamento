@@ -1,4 +1,5 @@
-import { Entity, PrimaryColumn, Column, CreateDateColumn } from 'typeorm'
+import { Entity, PrimaryColumn, Column, CreateDateColumn, JoinColumn, ManyToOne } from 'typeorm'
+import { User } from './User'
 
 @Entity('spendings')
 class Spendings {
@@ -17,6 +18,10 @@ class Spendings {
 
   @Column()
   user_reference: number
+
+  @JoinColumn({name: 'user_reference'})
+  @ManyToOne(() => User)
+  userReference: User
   
 }
 

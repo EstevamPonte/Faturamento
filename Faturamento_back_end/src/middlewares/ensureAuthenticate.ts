@@ -17,7 +17,7 @@ function ensureAuthenticate(request: Request, response: Response, next: NextFunc
   try {
     const { sub } = verify(token, '51dfd5bda8356ced09e100a297586a3d') as IPayload
 
-    request.user_id = sub
+    request.user_id = Number(sub)
 
     return next()
   } catch (error) {
