@@ -16,9 +16,8 @@ class AuthenticateUserService {
     const user = await userRepositories.findOne({
       name
     })
-
     if(!user) {
-      throw new Error('Email/Senha está incorreto')
+      throw new Error("Email/Senha está incorreto")
     }
 
     const passwordMatch = await compare(password, user.password)
