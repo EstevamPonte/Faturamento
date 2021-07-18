@@ -4,7 +4,7 @@ import { Status } from "../../entities/Status";
 export class inserStatus1626494451655 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-        await getConnection()
+        await queryRunner.manager
             .createQueryBuilder()
             .insert()
             .into(Status)
@@ -18,7 +18,7 @@ export class inserStatus1626494451655 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await getConnection()
+        await queryRunner.manager
             .createQueryBuilder()
             .delete()
             .from(Status)

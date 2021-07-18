@@ -1,5 +1,6 @@
 import { getCustomRepository } from 'typeorm'
 import { SpendingsRepositories } from '../../repositories/SpendingsRepositories'
+import { UserRepositories } from '../../repositories/UserRepositories'
 
 interface ISpendingRequest {
   name: string
@@ -10,6 +11,13 @@ interface ISpendingRequest {
 class CreateSpendinsServices {
   async execute({name, total = 0, user_reference}: ISpendingRequest) {
     const spentignsRepositoryes = getCustomRepository(SpendingsRepositories)
+    const userRepositories = getCustomRepository(UserRepositories)
+
+    const userExists = await userRepositories.findOne(user_reference)
+
+    if(!userExists) {
+      throw new Error('Usuário não existe')
+    }
 
     const spending = spentignsRepositoryes.create({
       name,

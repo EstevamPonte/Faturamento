@@ -4,7 +4,7 @@ import { Control } from "../../entities/Control";
 export class insertControl1626547126179 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-        await getConnection()
+        await queryRunner.manager
             .createQueryBuilder()
             .insert()
             .into(Control)
@@ -19,7 +19,7 @@ export class insertControl1626547126179 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await getConnection()
+        await queryRunner.manager
             .createQueryBuilder()
             .delete()
             .from(Control)
