@@ -1,10 +1,10 @@
-import { Entity, PrimaryColumn, Column, CreateDateColumn, JoinColumn, ManyToOne } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, JoinColumn, ManyToOne } from 'typeorm'
 import { User } from './User'
 
 @Entity('spendings')
 class Spendings {
 
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn('increment')
   readonly id: number
 
   @Column()

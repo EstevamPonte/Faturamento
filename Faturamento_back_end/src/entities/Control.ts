@@ -1,9 +1,9 @@
-import { Entity, Column, PrimaryColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('control')
 class Control {
   
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn('increment')
   readonly id: number
 
   @Column()
