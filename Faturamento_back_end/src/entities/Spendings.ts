@@ -1,5 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, JoinColumn, ManyToOne } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, JoinColumn, ManyToOne, OneToMany } from 'typeorm'
 import { User } from './User'
+import { Itens } from './Itens'
+import { Status } from './Status'
 
 @Entity('spendings')
 class Spendings {
@@ -22,6 +24,12 @@ class Spendings {
   @JoinColumn({name: 'user_reference'})
   @ManyToOne(() => User)
   userReference: User
+  
+  @OneToMany(() => Itens, item => item.spendingId, {
+    cascade: ['insert', 'update']
+  })
+  @JoinColumn({name: 'spending_id'})
+  itens: Itens[]
   
 }
 
