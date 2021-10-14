@@ -18,7 +18,7 @@ class ListSpendingsServices {
     const spendingsRepositories = getCustomRepository(SpendingsRepositories)
 
     const timestamp = new Date(dateRenge.year, dateRenge.month) 
-
+    const yearAndMonth = `${dateRenge.year}-${dateRenge.month}`
     const getSpening = await spendingsRepositories.getSpendingFromDate(timestamp, user_id)
 
     return classToPlain(getSpening)

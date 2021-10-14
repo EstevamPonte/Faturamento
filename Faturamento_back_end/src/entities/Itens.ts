@@ -18,6 +18,9 @@ class Itens {
   @Column()
   value: number
 
+  @Column()
+  final_installment: Date
+
   @CreateDateColumn()
   date_created: Date
 

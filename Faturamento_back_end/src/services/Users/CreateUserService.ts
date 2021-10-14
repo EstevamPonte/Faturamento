@@ -1,6 +1,7 @@
 import { getCustomRepository } from "typeorm";
 import { UserRepositories } from "../../repositories/UserRepositories";
 import { hash } from "bcryptjs";
+import { classToPlain } from 'class-transformer'
 
 interface IUserRequest {
   name: string
@@ -34,7 +35,7 @@ class CreateUserService {
 
     await usersRepository.save(user)
 
-    return user
+    return classToPlain(user)
   }
 }
 

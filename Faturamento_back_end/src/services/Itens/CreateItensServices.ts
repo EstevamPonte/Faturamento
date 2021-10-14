@@ -9,10 +9,11 @@ interface IItens {
   status_id: number
   control_id: number
   spending_id: number
+  final_installment_date?: Date
 }
 
 class CreateItensServices {
-  async execute({name, control_id, spending_id, status_id, value, instellment = 1}: IItens) {
+  async execute({name, control_id, spending_id, status_id, value, instellment = 1, final_installment_date = new Date()}: IItens) {
     const itensRepositorie = getCustomRepository(ItensRepositorie)
     const spendingsRepositories = getCustomRepository(SpendingsRepositories)
     
@@ -23,15 +24,14 @@ class CreateItensServices {
       relations: ['itens']
     })
 
-    
-
     const item = itensRepositorie.create({
       name,
       control_id,
       spending_id,
       status_id,
       value,
-      instellment
+      instellment,
+      final_installment: final_installment_date
     })
 
     await itensRepositorie.save(item)
