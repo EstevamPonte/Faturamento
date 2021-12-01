@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { ListControlController } from "./controller/Control/ListControlController";
 import { CreateItensController } from "./controller/Itens/CreateItensController";
+import { ShowItemController } from "./controller/Itens/ShowItemController";
 import { CreateSpendingsController } from "./controller/Spendings/CreateSpendingsController";
 import { ListSpendingsController } from "./controller/Spendings/ListSpendingsController";
 import { ListStatusController } from "./controller/Status/ListStatusController";
@@ -21,6 +22,7 @@ const createSpendingsController = new CreateSpendingsController()
 const listSpendingsController = new ListSpendingsController()
 
 const createItensController = new CreateItensController()
+const showItenController = new ShowItemController()
 
 router.post('/user', createUserController.handle)
 router.post('/login', authenticateUserController.handle)
@@ -33,5 +35,6 @@ router.post('/spending', ensureAuthenticate, createSpendingsController.handle)
 router.get('/spending', ensureAuthenticate, listSpendingsController.handle)
 
 router.post('/itens', ensureAuthenticate, createItensController.handle)
+router.get('/itens/show', ensureAuthenticate, showItenController.handle)
 
 export {router}

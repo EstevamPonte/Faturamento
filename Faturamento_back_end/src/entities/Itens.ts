@@ -40,8 +40,8 @@ class Itens {
   @ManyToOne(() => Status)
   status: Status
 
-  @JoinColumn({name: 'control_id'})
   @ManyToOne(() => Control)
+  @JoinColumn({name: 'control_id'})
   control: Control
   
   @ManyToOne(() => Spendings, spending => spending.itens)
