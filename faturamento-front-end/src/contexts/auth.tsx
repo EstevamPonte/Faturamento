@@ -1,16 +1,11 @@
-import { AxiosResponse } from "axios"
 import { createContext, ReactChild, useContext, useEffect, useState } from "react"
 import api from "../api"
-import { IUserLogin, IUserRegister, IUserContext, IUser } from "../Interfaces/User"
-import { SingInService, RegisterService } from "../Services/authServices"
+import { IUserLogin, IUserContext, IUser } from "../Interfaces/User"
+import { SingInService } from "../Services/authServices"
 import AlertBoxContext from "./alertBoxContext"
 
 interface IProps {
   children: ReactChild
-}
-
-interface IAuthSingIn {
-  handleSingIn(value: IUserLogin): void
 }
 
 const AuthUser = createContext<IUserContext>({} as IUserContext)
@@ -46,13 +41,13 @@ export function User({children}: IProps) {
     }
   }
 
-  function handleDingOut() {
+  function handleSingOut() {
     localStorage.clear()
     setUser(null)
   }
 
   return (
-    <AuthUser.Provider value={{signed: !!user, user, handleSingIn, handleDingOut}}>
+    <AuthUser.Provider value={{signed: !!user, user, handleSingIn, handleSingOut}}>
       {children}
     </AuthUser.Provider>
   )

@@ -1,5 +1,4 @@
 import api from "../api";
-import { AxiosResponse } from "axios"
 import { IUser, IUserLogin, IUserRegister } from "../Interfaces/User"
 
 interface IResponseUserLogin {

@@ -8,21 +8,24 @@ interface Iprops {
   id: string,
   onChange(e: any): any,
   value: string,
-  error?: string
+  error?: string,
+  width?: string,
+  paddingLeftInput?: string,
+  displayContainer?: string
 }
 
 const paddingInput = 20
 const GlobalInput = styled.input`
-  ${(props) => {
-    return {
-      paddingLeft: paddingInput,
-      height: 57,
-      borderRadius: 5,
-      outline: "none",
-      border: "solid 1px #707070",
-      fontSize: 16,
-    }
-  }}
+  padding-left: ${paddingInput}px;
+  height: 57px;
+  border-radius: 5px;
+  outline: none;
+  border: solid 1px #707070;
+  font-size: 16px;
+
+  ::-webkit-calendar-picker-indicator{
+    padding: ${paddingInput}px;
+  }
 `
 const Div = styled.div`
   position: relative;
@@ -48,10 +51,13 @@ function Input(props: Iprops) {
 
   }
   return (
-    <Div>
+    <Div style={{display: props.displayContainer ? props.displayContainer : ""}}>
       <Label
        htmlFor={props.id}
-        style={{...styleLabel, color: props.error ? "red" : "",}}
+        style={{
+          ...styleLabel,
+          color: props.error ? "red" : "",
+        }}
       >{props.placeholder}</Label>
       <GlobalInput
         name={props.name}
@@ -61,6 +67,8 @@ function Input(props: Iprops) {
         type={props.type ? props.type : "text"}
         style={{
           border: props.error ? "solid 1px red" : "",
+          width: props.width ? props.width : "",
+          paddingLeft: props.paddingLeftInput ? props.paddingLeftInput : "20px"
         }}
         onFocus={onFocusInput}
         onBlur={onBlurInput}

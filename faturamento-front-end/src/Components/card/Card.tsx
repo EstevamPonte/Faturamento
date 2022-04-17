@@ -17,7 +17,7 @@ const Div = styled.div`
       alignItems: "center",
       flexDirection: "column",
       gap: 20,
-      width: '100%'
+      boxShadow: "0 4px 8px 0 #00000033",
     }
   }}
 `
@@ -27,7 +27,7 @@ const Ptitle = styled.p`
   font-size: 26px;
 `
 
-function Cart(props: IProps): ReactElement {
+function Card(props: IProps): ReactElement {
   return (
     <Div>
       {props.title && <Ptitle>{props.title}</Ptitle>}
@@ -36,4 +36,4 @@ function Cart(props: IProps): ReactElement {
   )
 }
 
-export default Cart
+export default Card

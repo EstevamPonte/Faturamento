@@ -9,6 +9,9 @@ code {
     monospace;
 }
 
+#root {
+}
+
 * {
   margin: 0;
 }

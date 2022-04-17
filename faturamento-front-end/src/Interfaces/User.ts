@@ -1,7 +1,7 @@
 export interface IUserContext {
   signed: boolean,
   handleSingIn(value: IUserLogin): Promise<void>,
-  handleDingOut(): void,
+  handleSingOut(): void,
   user: IUser | null
 }
 

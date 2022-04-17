@@ -1,9 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import styled from "styled-components"
 import { AiOutlineClose } from "react-icons/ai";
-import { IAlertBox } from "../../Interfaces/AlertBox"
 import AlertBoxContext from "../../contexts/alertBoxContext"
-import { string } from "yup";
 
 interface IProps {
   opacity: number
@@ -107,7 +105,7 @@ function AlertBox() {
         setAlertBox({show: false})
       }, 300)
     }
-  }, [opacity])
+  }, [opacity, alertTimeout, setAlertBox])
 
   
   return (
