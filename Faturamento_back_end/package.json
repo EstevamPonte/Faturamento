@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node build/server.js",
     "dev": "ts-node-dev src/server.ts",
-    "typeorm": "ts-node-dev ./node_modules/typeorm/cli -f ./ormconfig.json"
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli -f ./ormconfig.json",
+    "postinstall": "tsc"
   },
   "keywords": [],
   "author": "",
