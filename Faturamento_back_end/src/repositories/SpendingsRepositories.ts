@@ -5,11 +5,6 @@ import { Spendings } from '../entities/Spendings'
 class SpendingsRepositories extends Repository<Spendings>{
   async getSpendingFromDate(date: Date, user_id: number) {
     const start = new Date(date.getFullYear(), date.getMonth() - 1) // Take the month before
-    const end = new Date(date.getFullYear(), date.getMonth() + 1) // Take the month before
-    console.log("-----------------")
-    console.log(start)
-    console.log(date)
-    console.log(end)
 
     const spending = await getConnection().createQueryBuilder()
       .select('spending')
