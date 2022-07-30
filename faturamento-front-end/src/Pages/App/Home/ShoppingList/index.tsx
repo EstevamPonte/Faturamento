@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import Card from "../../../../Components/card/Card"
 import { AiOutlineArrowDown } from "react-icons/ai";
+import {IItens} from "../../../../Interfaces/SpendingList"
 
 const ShoppingListContainer = styled.div`
   display: flex;
@@ -33,7 +34,7 @@ const DateItemContainer = styled.div`
 const StatusContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: right;
+  justify-content: space-between;
   align-items: right;
 `
 
@@ -59,21 +60,23 @@ const IconOnDate = styled(AiOutlineArrowDown) `
   color: ${props => props.theme.secondary};
 `
 
-function ShoppingList() {
+function ShoppingList({control, name, status, value, final_installment, date_created}:IItens) {
+  const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul","Ago","Set","Out","Nov","Dez"];
+
   return (
     <ShoppingListContainer>
       <Card>
         <CardShoppingList>
-          <ItemName>Moto</ItemName>
+          <ItemName>{name}</ItemName>
           <DateItemContainer>
-            <Dates>15/Dezembro/2022</Dates>
+            <Dates>{`${date_created.getDay()}/${meses[(date_created.getMonth())]}/${date_created.getFullYear()}`}</Dates>
             <IconOnDate size={25}/>
-            <Dates>15/Fevereiro/2022</Dates>
+            <Dates>{`${final_installment.getDay()}/${meses[(final_installment.getMonth())]}/${final_installment.getFullYear()}`}</Dates>
           </DateItemContainer>
           <StatusContainer>
-            <Price>R$1200</Price>
-            <Control><SpanGreen>Controle: </SpanGreen>PARCELADA</Control>
-            <Status><SpanGreen>Status: </SpanGreen>PENDENTE</Status>
+            <Price>R&#36;{value}</Price>
+            <Control><SpanGreen>Controle: </SpanGreen>{control.name}</Control>
+            <Status><SpanGreen>Status: </SpanGreen>{status.name}</Status>
           </StatusContainer>
         </CardShoppingList>
       </Card>

@@ -21,6 +21,7 @@ export function User({children}: IProps) {
     
     if(storageUser && storageToken) {
       setUser(JSON.parse(storageUser))
+      api.defaults.headers.common['Authorization'] = `Bearer ${storageToken}`
     }
     
   }, [])
@@ -32,7 +33,7 @@ export function User({children}: IProps) {
 
       api.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`
 
-      localStorage.setItem("@FinanceiroAuth:user", JSON.stringify(response.data.token))
+      localStorage.setItem("@FinanceiroAuth:user", JSON.stringify(response.data.user))
       localStorage.setItem("@FinanceiroAuth:token", response.data.token)
     } catch (error: any) {
       if (error.response) {

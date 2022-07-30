@@ -7,12 +7,14 @@ import { ListSpendingsController } from "./controller/Spendings/ListSpendingsCon
 import { ListStatusController } from "./controller/Status/ListStatusController";
 import { AuthenticateUserController } from "./controller/Users/AuthenticateUserController";
 import { CreateUserController } from "./controller/Users/CreateUserController";
+import { SendEmailController } from "./controller/Users/SendEmailController";
 import { ensureAuthenticate } from "./middlewares/ensureAuthenticate";
 
 const router = Router()
 
 const createUserController = new CreateUserController()
 const authenticateUserController = new AuthenticateUserController()
+const sendEmailController = new SendEmailController()
 
 const listStatusController = new ListStatusController()
 
@@ -26,6 +28,7 @@ const showItenController = new ShowItemController()
 
 router.post('/user', createUserController.handle)
 router.post('/login', authenticateUserController.handle)
+router.get('/send', sendEmailController.handle)
 
 router.get('/status', ensureAuthenticate, listStatusController.handle)
 

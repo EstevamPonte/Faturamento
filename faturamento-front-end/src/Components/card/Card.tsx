@@ -10,7 +10,7 @@ const Div = styled.div`
   ${(props) => {
     return {
       backgroundColor: props.theme.card.cardBackground,
-      padding: 30,
+      padding: "30px 10px",
       borderRadius: 5,
       display: "flex",
       justifyContent: "center",

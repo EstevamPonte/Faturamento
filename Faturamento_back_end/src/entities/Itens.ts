@@ -21,6 +21,9 @@ class Itens {
   @Column()
   final_installment: Date
 
+  @Column()
+  date_item: Date
+
   @CreateDateColumn()
   date_created: Date
 
