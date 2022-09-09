@@ -18,6 +18,8 @@ export interface IBank {
   controls: Array<IControl>
   status: Array<IStatus>
   getSpendingListHelper(): void
+  date_item: string
+  value_per_month: number
 }
 
 export interface IItens {
@@ -29,5 +31,6 @@ export interface IItens {
   instellment: number,
   user_reference: string,
   control: IControl,
-  status: IStatus
+  status: IStatus,
+  date_item: Date
 }

@@ -10,6 +10,8 @@ import Button from "../../../../Components/button/Button"
 import Select from "../../../../Components/input/Select"
 import AlertBoxContext from "../../../../contexts/alertBoxContext"
 import api from "../../../../api"
+import ModalHeader from "../../../../Components/modal/ModalHeader"
+import ModalHeaderContent from "../../../../Components/modal/ModalHeaderContent"
 
 const validationSchema = yup.object().shape({
   name: yup.string()
@@ -64,7 +66,7 @@ const PurchaseForm = styled.form`
   gap: 20px;
 `
 
-function BankList({itens, name, total, controls, status, id, getSpendingListHelper}: IBank) {
+function BankList({itens, name, total, controls, status, id, getSpendingListHelper, date_item, value_per_month}: IBank) {
   const [openModal, setOpenModal] = useState(false)
   const {setAlertBox} = useContext(AlertBoxContext)
   
@@ -97,12 +99,19 @@ function BankList({itens, name, total, controls, status, id, getSpendingListHelp
         status_id: +values.status,
         instellment: +values.instellment,
         value: +values.value,
-        spending_id: id
+        spending_id: id,
+        date_item: date_item
       }
       console.log(form)
       createItem(form)
     },
   });
+
+  function formateDateItem(date: string): string {
+    const [year, month] = date.toString().split('-')
+
+    return `${month}/${year}`
+  }
 
   return (
     <BankListContainer>
@@ -111,8 +120,8 @@ function BankList({itens, name, total, controls, status, id, getSpendingListHelp
           <Bank>
           {name}
           </Bank>
-          <Total>
-            Total: R&#36;{total}
+          <Total> 
+            Total desse mês: R&#36;{value_per_month}
           </Total>
         </BankTotal>
         <PlusItem onClick={() => setOpenModal(true)}>
@@ -131,9 +140,16 @@ function BankList({itens, name, total, controls, status, id, getSpendingListHelp
           user_reference={item.user_reference}
           value={item.value}
           key={item.id}
+          date_item={new Date(item.date_item)}
         />
       ))}
-      <Modal title="Cadastre um item" setOpenModal={setOpenModal} openModal={openModal}>
+      <Modal title="Cadastre um item" openModal={openModal}>
+        <ModalHeader setOpenModal={setOpenModal} openModal={openModal}>
+          <ModalHeaderContent>
+            <h2>Cadastre um item</h2>
+            <p style={{marginTop: 10}}>Para o mês <b>{formateDateItem(date_item)}</b></p>
+          </ModalHeaderContent>
+        </ModalHeader>
         <PurchaseForm onSubmit={formik.handleSubmit}>
           <Input
             width="100%"

@@ -109,11 +109,13 @@ function Home() {
               itens={bank.itens}
               name={bank.name}
               total={bank.total}
+              value_per_month={bank.value_per_month}
               user_reference={bank.user_reference}
               key={bank.id}
               controls={controls}
               status={status}
               getSpendingListHelper={() => getSpendingList(date)}
+              date_item={date}
             />
             {console.log("Itens",bank.itens)}
           </>

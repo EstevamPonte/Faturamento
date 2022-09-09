@@ -16,12 +16,17 @@ interface ISpendings {
 class ListSpendingsServices {
   async execute({user_id, dateRenge}: ISpendings) {
     const spendingsRepositories = getCustomRepository(SpendingsRepositories)
+    let newSpendingList = []
 
-    const timestamp = new Date(dateRenge.year, dateRenge.month) 
-    const yearAndMonth = `${dateRenge.year}-${dateRenge.month}`
+    const timestamp = new Date(dateRenge.year, dateRenge.month)
     const getSpening = await spendingsRepositories.getSpendingFromDate(timestamp, user_id)
 
-    return classToPlain(getSpening)
+    for (const spendings of getSpening) {
+      const valuePerMonth = spendings.itens.reduce((previousValue, currentValue) => previousValue + currentValue.value, 0)
+      newSpendingList.push({value_per_month:valuePerMonth, ...spendings})
+    }
+
+    return classToPlain(newSpendingList)
 
   }
 }

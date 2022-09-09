@@ -60,7 +60,7 @@ const IconOnDate = styled(AiOutlineArrowDown) `
   color: ${props => props.theme.secondary};
 `
 
-function ShoppingList({control, name, status, value, final_installment, date_created}:IItens) {
+function ShoppingList({control, name, status, value, final_installment, date_created, date_item}:IItens) {
   const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul","Ago","Set","Out","Nov","Dez"];
 
   return (
@@ -69,7 +69,7 @@ function ShoppingList({control, name, status, value, final_installment, date_cre
         <CardShoppingList>
           <ItemName>{name}</ItemName>
           <DateItemContainer>
-            <Dates>{`${date_created.getDay()}/${meses[(date_created.getMonth())]}/${date_created.getFullYear()}`}</Dates>
+            <Dates>{`${date_item.getDate()}/${meses[(date_item.getMonth())]}/${date_item.getFullYear()}`}</Dates>
             <IconOnDate size={25}/>
             <Dates>{`${final_installment.getDay()}/${meses[(final_installment.getMonth())]}/${final_installment.getFullYear()}`}</Dates>
           </DateItemContainer>
